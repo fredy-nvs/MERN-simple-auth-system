@@ -1,5 +1,6 @@
 const express = require('express');
 const app = express();
+require('./config/database');
 
 const normalizePort = (specifiedPort) => {
 	const port = parseInt(specifiedPort, 10);
