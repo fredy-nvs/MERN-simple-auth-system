@@ -1,6 +1,15 @@
 const express = require('express');
 const app = express();
 require('./config/database');
+const cors = require('cors');
+
+app.use(express.json());
+
+app.use(cors({
+	origin: ['*'],
+	methods: ['GET', 'POST'],
+	credentials: true
+}));
 
 const normalizePort = (specifiedPort) => {
 	const port = parseInt(specifiedPort, 10);
