@@ -1,4 +1,5 @@
 const User = require('../model/user.model');
+const createToken = require("../util/token");
 
 const signUp = async (req, res) => {
 	const {name, password, email} = req.body;
@@ -21,7 +22,18 @@ const signUp = async (req, res) => {
 };
 
 const signIn = async (req, res) => {
+	const {email, password} = req.body;
+	try {
+		const user = await User.findOne({ email });
+		const token = createToken(user._id);
 
+		res.cookie('jwt', token, {httpOnly: true});
+		res.status(200).json({
+			userId: user._id
+		});
+	} catch (error) {
+		res.status(404).json('email or password incorrect');
+	}
 };
 
 module.exports = { signUp, signIn };
