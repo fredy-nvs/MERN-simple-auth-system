@@ -2,6 +2,7 @@ const express = require('express');
 const app = express();
 require('./config/database');
 const cors = require('cors');
+const authenticationRouter = require('./routes/authentication.routes');
 
 app.use(express.json());
 
@@ -23,6 +24,8 @@ const normalizePort = (specifiedPort) => {
 };
 
 const port = normalizePort(process.env.PORT || '5000');
+
+app.use('/api', authenticationRouter);
 
 app.listen(port, () => {
 	console.log('App listen on port ' + port);
