@@ -62,7 +62,7 @@ const SignIn = () => {
 				</div>
 				<button type="submit">Connect</button>
 
-				<span>Does not have an account? <Link to="/register">Create an account</Link></span>
+				<span>No account? <Link to="/register">Create new account here</Link></span>
 			</form>
 			<ToastContainer />
 		</div>
