@@ -33,17 +33,4 @@ user.pre("save", async (next) => {
 	next();
 });
 
-user.statics.login = async (email, password) => {
-	const user = await this.findOne(email);
-
-	if (user) {
-		let passwordMatched = user.password === password;
-		if (passwordMatched) {
-			return user;
-		}
-		throw new Error('Email or password incorrect');
-	}
-	throw new Error('Email or password incorrect');
-}
-
 module.exports = mongoose.model('User', user);

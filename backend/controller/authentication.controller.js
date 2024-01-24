@@ -23,8 +23,14 @@ const signUp = async (req, res) => {
 
 const signIn = async (req, res) => {
 	const {email, password} = req.body;
+
 	try {
 		const user = await User.findOne({ email });
+
+		if (!user || password !== user.password) {
+			return res.status(404).json({ message: "Email or password incorrect" });
+		}
+
 		const token = createToken(user._id);
 
 		res.cookie('jwt', token, {httpOnly: true});
@@ -32,7 +38,7 @@ const signIn = async (req, res) => {
 			userId: user._id
 		});
 	} catch (error) {
-		res.status(404).json('email or password incorrect');
+		console.error({ error });
 	}
 };
 
