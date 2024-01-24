@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import {useState} from "react";
 import {Link, useNavigate} from "react-router-dom";
 import {ToastContainer, toast} from "react-toastify";
 import axios from "axios";
@@ -11,7 +11,7 @@ const SignUp = () => {
 		name: "",
 		password: ""
 	});
-	const {email, name, password} = inputValue
+	//const {email, name, password} = inputValue
 
 	const handleChange = (event) => {
 		const {name, value} = event.target
