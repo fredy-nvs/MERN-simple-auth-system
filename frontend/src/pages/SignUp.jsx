@@ -38,12 +38,13 @@ const SignUp = () => {
 				{...inputValue},
 				{withCredentials: true})
 
-			const {userId, message} = data
-			if (userId === undefined) {
-				handleError(message)
-			} else {
+			const {success, message} = data
+
+			if (success) {
 				handleSuccess(message)
-				setTimeout(() => { navigate("/") }, 1000)
+				setTimeout(() => { navigate("/login") }, 1000)
+			} else {
+				handleError(message)
 			}
 		} catch (error) {
 			console.error(error.message)
@@ -51,8 +52,8 @@ const SignUp = () => {
 		setInputValue({
 			...inputValue,
 			email: "",
-			password: "",
-			name: ""
+			name: "",
+			password: ""
 		})
 	}
 
